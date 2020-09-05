@@ -1,0 +1,10 @@
+.container{
+  background-color: aliceblue;
+}
+.titleHeader{
+  text-align: center;
+  background-color: #e9f5ff;
+  font-size: 1.2em;
+  color: black;
+  padding: 8px;
+}

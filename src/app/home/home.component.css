@@ -1,0 +1,32 @@
+mat-grid-tile {
+  background: #dfdfdf;
+}
+:host {
+  display: block;
+  border: 2px solid black;
+  border-radius: 1px;
+  background-color: #e7e7e7;
+}
+.imgSize{
+min-width: 40px;
+min-height: 80px;
+}
+.minCardHieght{
+min-height: 35em;
+margin:3px;
+border: 2px solid black;
+border-radius: 1px ;
+}
+.yearContainer{
+display: grid;
+
+}
+.yearElemnt{
+grid-auto-columns: auto;
+}
+
+.alignCenter{
+  text-align: center;
+    margin: auto;
+    color: black;
+}
