@@ -7,24 +7,23 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class ApiCallsService {
-  getXtListsFilter(filterType, data) {
-    if (filterType === 'year') {
-      return this.http.get(
-        `https://api.spaceXdata.com/v3/launches?limit=100&launch_year=${data}`
-      );
-    } else if (filterType === 'lunch') {
-      return this.http.get(
-        `https://api.spaceXdata.com/v3/launches?limit=100&launch_success=${data}`
-      );
-    } else {
-      return this.http.get(
-        `https://api.spaceXdata.com/v3/launches?limit=100`
-      );
-    }
+  spinnerAdd() {
+    var element = document.getElementById('myDIV');
+    element.classList.add('spinner');
+  }
+
+  spinnerRemove() {
+    var element = document.getElementById('myDIV');
+    element.classList.remove('spinner');
+  }
+
+  getXtListsFilter(filterObj) {
+    return this.http.get(
+      `https://api.spaceXdata.com/v3/launches?limit=100&launch_success=${filterObj.launch}&launch_year=${filterObj.year}`
+    );
   }
 
   constructor(private http: HttpClient) {}
-  // Uses http.get() to load data from a single API endpoint
   public getXtLists() {
     return this.http.get('https://api.spaceXdata.com/v3/launches?limit=100');
   }

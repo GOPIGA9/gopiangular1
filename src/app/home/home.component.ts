@@ -9,17 +9,39 @@ export class HomeComponent implements OnInit {
   breakpoint: number;
   XTdatas: any;
   years = [];
-  constructor(public XTservice: ApiCallsService) {}
+  filterObj = {
+    year: '',
+    launch: '',
+  };
+  constructor(
+    public XTservice: ApiCallsService,
+  ) {}
 
   ngOnInit(): void {
+    this.XTservice.spinnerAdd();
     this.setBreakPoint(window.innerWidth);
     this.makeArray();
     this.XTservice.getXtLists().subscribe((data) => (this.XTdatas = data));
+    this.XTservice.spinnerRemove();
   }
   applyFilter(filterType, data) {
-    this.XTservice.getXtListsFilter(filterType, data).subscribe(
+    this.XTservice.spinnerAdd();
+    if (filterType === 'year') {
+      this.filterObj.year = data;
+    } else if (filterType === 'clear') {
+      this.filterObj.year = '';
+      this.filterObj.launch = '';
+    } else {
+      if (data === true) {
+        this.filterObj.launch = 'true';
+      } else {
+        this.filterObj.launch = 'false';
+      }
+    }
+    this.XTservice.getXtListsFilter(this.filterObj).subscribe(
       (data) => (this.XTdatas = data)
     );
+    this.XTservice.spinnerRemove();
   }
   makeArray() {
     for (var i = 2006; i <= 2019; i++) {
